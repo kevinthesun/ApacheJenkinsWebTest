@@ -5,7 +5,7 @@ sudo apt-get update && apt-get install -y \
 wget http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.deb && \
     sudo dpkg -i scala-2.11.8.deb && rm scala-2.11.8.deb
 
-sudo apt-get install libopenblas-dev
+sudo apt-get -y install libopenblas-dev
 sudo apt-get -y install python-pip python-dev build-essential
 sudo apt-get -y install doxygen
 sudo apt-get -y install pandoc
