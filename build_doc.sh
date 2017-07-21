@@ -1,12 +1,16 @@
 #!/bin/bash
 
-web_url="https://github.com/kevinthesun/MXNet-Website-Archive.git"
+web_url="https://github.com/kevinthesun/ApacheJenkinsWebTest"
 mxnet_url="https://github.com/dmlc/mxnet.git"
 web_folder="VersionedWeb"
 mxnet_folder="mxnet"
 local_build="latest"
+web_branch="static_web"
 git clone $web_url $web_folder
 git clone $mxnet_url --recursive $mxnet_folder
+cd $web_folder
+git checkout -b $web_branch "origin/$web_branch"
+cd ..
 mkdir "$local_build"
 mkdir "$local_build/versions"
 
