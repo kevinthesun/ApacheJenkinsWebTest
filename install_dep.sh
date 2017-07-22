@@ -10,7 +10,9 @@ sudo apt-get -y install libatlas-base-dev
 sudo apt-get -y install doxygen
 sudo apt-get -y install pandoc
 sudo apt-get -y install python-tk
+sudo apt-get -y install python-bs4
 
 sudo python -m pip install -U pip
 sudo pip install sphinx==1.5.1 CommonMark==0.5.4 breathe mock==1.0.1 recommonmark pypandoc
 sudo pip install --upgrade requests
+sudo pip install beautifulsoup4
