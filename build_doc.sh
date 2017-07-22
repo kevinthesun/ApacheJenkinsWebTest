@@ -29,7 +29,7 @@ done < "$input"
 
 mkdir master
 cd "$mxnet_folder/docs"
-make html USE_OPENMP=0 USEOPENCV=0 || exit 1
+make html USE_OPENMP=0 USE_OPENCV=0 || exit 1
 cd ../..
 python AddVersion.py --file_path "$mxnet_folder/docs/_build/html/"
 cp -a "$mxnet_folder/docs/_build/html/." master
@@ -53,7 +53,7 @@ do
     then
         if [ "${tag_list[0]}" != "$latest_tag" ]
         then
-            make html USE_OPENMP=0 USEOPENCV=0 || exit 1
+            make html USE_OPENMP=0 USE_OPENCV=0 || exit 1
             cd ../..
             python AddVersion.py --file_path "$mxnet_folder/docs/_build/html/" --current_version "${tag_list[$i]}"
             cd "$mxnet_folder/docs"
@@ -64,7 +64,7 @@ do
     else
         if [ "$latest_tag" == '' ]
         then
-            make html USE_OPENMP=0 USEOPENCV=0 || exit 1
+            make html USE_OPENMP=0 USE_OPENCV=0 || exit 1
             cd ../..
             python AddVersion.py --file_path "$mxnet_folder/docs/_build/html/" --current_version "${tag_list[$i]}"
             cd "$mxnet_folder/docs"
