@@ -1,0 +1,6 @@
+digraph "mxnet::KVStore"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{mxnet::KVStore\n|# updater_\l# type_\l# barrier_before_exit_\l|+ ~KVStore()\l+ type()\l+ Init()\l+ Push()\l+ Pull()\l+ set_updater()\l+ set_barrier_before_exit()\l+ get_rank()\l+ get_group_size()\l+ get_num_dead_node()\l+ Barrier()\l+ SendCommandToServers()\l+ RunServer()\l+ Create()\l+ InitPSEnv()\l+ IsWorkerNode()\l+ IsServerNode()\l+ IsSchedulerNode()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+}
