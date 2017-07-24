@@ -16,3 +16,4 @@ sudo python -m pip install -U pip
 sudo pip install sphinx==1.5.1 CommonMark==0.5.4 breathe mock==1.0.1 recommonmark pypandoc
 sudo pip install --upgrade requests
 sudo pip install beautifulsoup4
+sudo pip install numpy
