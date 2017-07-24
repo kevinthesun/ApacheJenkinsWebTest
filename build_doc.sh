@@ -14,7 +14,7 @@ cd ..
 mkdir "$local_build"
 mkdir "$local_build/versions"
 
-lastest_tag=""
+latest_tag=''
 if [ -f "$web_folder/tag.txt" ]
 then 
     latest_tag=$(<"$web_folder/tag.txt")
