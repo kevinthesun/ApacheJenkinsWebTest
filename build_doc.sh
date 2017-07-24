@@ -70,8 +70,7 @@ do
             cd "$mxnet_folder/docs"
             mkdir "../../$local_build/versions/${tag_list[$i]}"
             cp -a _build/html/. "../../$local_build/versions/${tag_list[$i]}"
-        fi
-        if [ "${tag_list[0]}" != "$latest_tag" ]
+        elif [ "${tag_list[0]}" != "$latest_tag" ]
         then
             if [ $i == 1 ]
             then
