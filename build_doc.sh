@@ -28,63 +28,61 @@ do
 done < "$input"
 
 mkdir master
-cd "$mxnet_folder/docs"
-make html USE_OPENMP=0 USE_OPENCV=0 || exit 1
-cd ../..
+cd "$mxnet_folder"
+make docs || exit 1
+cd ..
 python AddVersion.py --file_path "$mxnet_folder/docs/_build/html/"
 cp -a "$mxnet_folder/docs/_build/html/." master
 
 total=${#tag_list[*]}
-cd "$mxnet_folder/docs"
+cd "$mxnet_folder"
 for (( i=0; i<=$(( $total -1 )); i++ ))
 do
-    git checkout -- ..
-    git clean -d -f ..
+    git checkout -- .
+    git clean -d -f .
     git checkout "tags/${tag_list[$i]}"
     if [[ ${tag_list[$i]} == v0.10.0* ]]
     then
-        cd ..
         rm -rf cub
         git clone https://github.com/NVlabs/cub.git
-        cd docs
     fi
     git submodule update
     if [ $i == 0 ]
     then
         if [ "${tag_list[0]}" != "$latest_tag" ]
         then
-            make html USE_OPENMP=0 USE_OPENCV=0 || exit 1
-            cd ../..
+            make docs || exit 1
+            cd ..
             python AddVersion.py --file_path "$mxnet_folder/docs/_build/html/" --current_version "${tag_list[$i]}"
-            cd "$mxnet_folder/docs"
-            mkdir _build/html/versions
-            cp -a _build/html/. "../../$local_build"
-            echo "${tag_list[$i]}" > "../../$local_build/tag.txt"
+            cd "$mxnet_folder"
+            mkdir docs/_build/html/versions
+            cp -a docs/_build/html/. "../$local_build"
+            echo "${tag_list[$i]}" > "../$local_build/tag.txt"
         fi
     else
         if [ "$latest_tag" == '' ]
         then
-            make html USE_OPENMP=0 USE_OPENCV=0 || exit 1
-            cd ../..
+            make docs || exit 1
+            cd ..
             python AddVersion.py --file_path "$mxnet_folder/docs/_build/html/" --current_version "${tag_list[$i]}"
-            cd "$mxnet_folder/docs"
-            mkdir "../../$local_build/versions/${tag_list[$i]}"
-            cp -a _build/html/. "../../$local_build/versions/${tag_list[$i]}"
+            cd "$mxnet_folder"
+            mkdir "../$local_build/versions/${tag_list[$i]}"
+            cp -a docs/_build/html/. "../$local_build/versions/${tag_list[$i]}"
         elif [ "${tag_list[0]}" != "$latest_tag" ]
         then
             if [ $i == 1 ]
             then
-                rm -rf "../../$web_folder/.git"
-                cp -a "../../$web_folder/." "../../$local_build/versions/${tag_list[$i]}"
-                rm -rf "../../$local_build/versions/${tag_list[$i]}/versions"
+                rm -rf "../$web_folder/.git"
+                cp -a "../$web_folder/." "../$local_build/versions/${tag_list[$i]}"
+                rm -rf "../$local_build/versions/${tag_list[$i]}/versions"
             else
-                cp -R "../../$web_folder/versions/${tag_list[$i]}" "../../$local_build/versions/${tag_list[$i]}"
+                cp -R "../$web_folder/versions/${tag_list[$i]}" "../$local_build/versions/${tag_list[$i]}"
             fi
         fi
     fi
 done
 
-cd ../..
+cd ..
 mkdir "$local_build/versions/master"
 if [ "${tag_list[0]}" != "$latest_tag" ]
 then
