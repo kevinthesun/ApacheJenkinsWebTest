@@ -74,6 +74,7 @@ do
         then
             if [ $i == 1 ]
             then
+                rm -rf "../../$web_folder/.git"
                 cp -a "../../$web_folder/." "../../$local_build/versions/${tag_list[$i]}"
                 rm -rf "../../$local_build/versions/${tag_list[$i]}/versions"
             else
